@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<head>
+    <style>
+        .max-size {
+            height: 100vh;
+            width: 100vw;
+        }
+        #mainBox {
+            border-radius: 50px;
+            background: #e0e0e0;
+            box-shadow:  20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+            padding: 1.5vw;
+            width: 10vw;
+            height: 20vw;
+        }
+        input,
+        select {
+            border: none;
+            padding: 0.5vw;
+            border-radius: 50px;
+        }
+        #result {
+            background:#f5f5f5;
+            padding: 0.5vw;
+            border-radius: 50px;
+            width: 5em;
+        }
+
+        body {
+            margin: 0;
+            background-color: #e0e0e0;
+        }
+        body,
+        input,
+        button {
+            font-family: "Courier New", Courier, monospace;
+        }
+        button,
+        input {
+            border: none;
+            padding: 0.5vw;
+            border-radius: 100px;
+        }
+        button:focus,
+        button:hover,
+        input {
+            outline: none;
+        }
+        input {
+            background-color: #f5f5f5;
+        }
+        div,
+        label {
+            display: grid;
+            place-items: center;
+        }
+        :focus {
+            border: 2px solid lightgray;
+        }
+        button:active,
+        input#submit:active {
+            background-color: lightgray;
+            border: none;
+        }
+    </style>
+    <script>
+        function calculate() {
+            var mass = document.getElementById("mass").value;
+            var anodeFoil = document.getElementById("anodeFoil").value;
+            var cathodeFoil = document.getElementById("cathodeFoil").value;
+            var ampPerGram = document.getElementById("ampPerGram").value;
+            if (anodeFoil === "Al") {
+                anodeFoil = 0.0106
+            } else if (anodeFoil === "Cu") {
+                anodeFoil = 0.0175
+            }
+            if (cathodeFoil === "Al") {
+                cathodeFoil = 0.0106
+            } else if (cathodeFoil === "Cu") {
+                cathodeFoil = 0.0175
+            }
+            var active = mass - anodeFoil - cathodeFoil
+            active = Math.round(active * 1000) / 1000
+            var result = ampPerGram * active * 1000
+            result = Math.round(result * 100) / 100
+            document.getElementById("result").innerHTML = result;        
+            if (result === 0) {
+                document.getElementById("result").innerHTML = "..."
+            }
+        }
+        function cc() {
+            var el = document.createElement('textarea');
+            el.value = (document.getElementById("result").innerHTML)
+            el.setAttribute('readonly', '');
+            el.style = { position: 'absolute', left: '-9999px' };
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+        }
+    </script>
+</head>
+<body>
+    <div class="max-size">
+        <div id="mainBox">
+            <label> Electrode Mass <br>
+                <input id="mass" type="number" onChange="calculate()">
+            </label>
+            <br>
+            <label> Anode Foil <br>
+                <select id="anodeFoil" onChange="calculate()">
+                    <option value="Al">Al</option>
+                    <option value="Cu">Cu</option>
+                </select>
+            </label>
+            <br>
+            <label> Cathode Foil <br>
+                <select id="cathodeFoil" onChange="calculate()">
+                    <option value="Cu">Cu</option>
+                    <option value="Al">Al</option>
+                </select>
+            </label>
+            <br>
+            <label> A/g <br>
+                <input  id="ampPerGram" value="0.025" onChange="calculate()">
+            </label>
+            <br>
+            <label> Current (mA) <br>
+                <div id="result" onChange="calculate()">
+                    ...
+                </div>
+            </label>
+            <br>
+            <button id="copy" onclick="cc()">Copy</button>            
+        </div>
+    </div>
+    
+</body>
