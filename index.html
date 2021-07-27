@@ -1,87 +1,7 @@
 <!DOCTYPE html>
 <head>
-    <title>mA Calculator</title>
+    <title>NEC Input Field</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧪</text></svg>">
-    <style>
-        .max-size {
-            width: 100%;
-            height: 100vh;
-        }
-        #mainBox {
-            border-radius: 50px;
-            background: #e0e0e0;
-            box-shadow:  20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
-            padding: 1.5vw;
-            width: fit-content;
-            height: 29.21875vw;
-            display: flex;
-        }
-        input,
-        select {
-            border: 2px solid transparent;
-            padding: 0.5vw;
-            border-radius: 50px;
-        }
-        #result,
-        #ampPerGram {
-            background:#f5f5f5;
-            padding: 0.5vw;
-            border-radius: 50px;
-            width: 5em;
-            text-align: center;
-        }
-
-        body {
-            margin: 0;
-            background-color: #e0e0e0;
-        }
-        body,
-        input,
-        button {
-            font-family: "Courier New", Courier, monospace;
-        }
-        button,
-        input {
-            border: 2px solid transparent;
-            padding: 0.5vw;
-            border-radius: 100px;
-        }
-        button:focus,
-        button:hover,
-        input {
-            outline: none;
-        }
-        input {
-            background-color: #f5f5f5;
-        }
-        div,
-        label {
-            display: grid;
-            place-items: center;
-        }
-        :focus {
-            border: 2px solid lightgray;
-        }
-        button:active,
-        input#submit:active {
-            background-color: lightgray;
-            border: 2px solid transparent;
-        }
-        #sub {
-            display: flex;
-            text-align: center;
-            vertical-align: middle;
-        }
-        .sub {
-            margin-left: 2vw;
-        }
-        .sub p {
-            margin: 1.65625vw 0 1.15625vw 0;
-        }
-        .sub input {
-            margin: 1vw 0 .5vw 0;
-        }
-    </style>
     <script>
         function calculate() {
             var mass = document.getElementById("mass").value;
@@ -127,6 +47,18 @@
             document.body.removeChild(element);
         }
         function csv() {
+            var testCode = document.getElementById("testCode").value;
+            var cathode = document.getElementById("cathode").value;
+            var anode = document.getElementById("anode").value;
+            var anodeSol = document.getElementById("anodeSol").value;
+            var anodeThick = document.getElementById("anodeThick").value;
+            var anodeFoil = document.getElementById("anodeFoil").value;
+            var necLayer = document.getElementById("necLayer").value;
+            var necWatt = document.getElementById("necWatt").value;
+            var necMinute = document.getElementById("necMinute").value;
+            var protectLayer = document.getElementById("protectLayer").value;
+            var protectWatt = document.getElementById("protectWatt").value;
+            var protectTime = document.getElementById("protectTime").value;
             var mass = document.getElementById("mass").value;
             var c1 = document.getElementById("1").value;
             var c2 = document.getElementById("2").value;
@@ -143,17 +75,174 @@
             var c30 = document.getElementById("30").value;
             var c50 = document.getElementById("50").value;
             var c100 = document.getElementById("100").value;
-            const value = ["", "", "", "", "", "", "", "","", "", "", "", "", mass, c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c15, c20, c30, c50, c100]
+            const value = ["", testCode, cathode, anode, anodeSol, anodeThick, anodeFoil, necLayer,necWatt, necMinute, protectLayer, protectWatt, protectTime, mass, c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c15, c20, c30, c50, c100]
             let finalValue = value.toString()
-            console.log(finalValue)
             download("file.csv", finalValue);
         }
     </script>
+    <style>
+        #max-size {
+            width: 100%;
+            height: 100vh;
+            display: grid;
+            place-items: center;
+        }
+        #mainBox {
+            border-radius: 50px;
+            background: #e0e0e0;
+            box-shadow:  20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+            padding: 1.5vw;
+            width: fit-content;
+            height: fit-content;
+        }
+        input,
+        select {
+            border: 2px solid transparent;
+            padding: 0.5vw;
+            border-radius: 50px;
+        }
+        #result,
+        #ampPerGram {
+            background:#f5f5f5;
+            padding: 0.5vw;
+            border-radius: 50px;
+            width: 5em;
+            text-align: center;
+        }
+
+        body {
+            margin: 0;
+            background-color: #e0e0e0;
+        }
+        body,
+        input,
+        button {
+            font-family: "Courier New", Courier, monospace;
+        }
+        button,
+        input {
+            border: 2px solid transparent;
+            padding: 0.5vw;
+            border-radius: 100px;
+        }
+        button:focus,
+        button:hover,
+        input {
+            outline: none;
+        }
+        input {
+            background-color: #f5f5f5;
+        }
+        .column,
+        #calBox,
+        label {
+            display: grid;
+            place-items: center;
+        }
+        :focus {
+            border: 2px solid lightgray;
+        }
+        button:active,
+        input#submit:active {
+            background-color: lightgray;
+            border: 2px solid transparent;
+        }
+        #sub {
+            display: flex;
+            text-align: center;
+            vertical-align: middle;
+        }
+        .sub {
+            margin-left: 2vw;
+        }
+        .sub p {
+            margin: 1.65625vw 0 1.15625vw 0;
+        }
+        .sub input {
+            margin: 1vw 0 .5vw 0;
+        }
+        .firstIn {
+            width: 10.9375vw;
+            margin: 0 1vw;
+        }
+        h1,
+        h2 {
+            margin: 0;
+        }
+        h2 {
+            margin-top: 1vw;
+        }
+        #dataBox {
+            border-radius: 50px;
+            background: #e0e0e0;
+            box-shadow:  20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+            width: fit-content;
+            height: fit-content;
+            padding: 2vw;
+        }
+        #calBox {
+            border-radius: 50px;
+            background: #e0e0e0;
+            box-shadow:  20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+            width: fit-content;
+            height: fit-content;
+            padding: 2vw;
+            margin-right: 4vw;
+        }
+        #mainBox h1 {
+            margin-bottom: 1vw;
+        }
+    </style>
 </head>
 <body>
-    <div class="max-size">
-        <div id="mainBox">
-            <div>
+    <div id="max-size">
+        <div id="dataBox">
+            <h1>General Data</h1> 
+            <div style="display: flex;">
+                <label> Test-Code <br>
+                    <input class="firstIn" id="testCode">
+                </label>
+                <label> Cathode <br>
+                    <input class="firstIn" id="cathode">
+                </label>
+                <label> Anode <br>
+                    <input class="firstIn" id="anode">
+                </label>
+                <label> Anode Solution <br>
+                    <input class="firstIn" id="anodeSol">
+                </label>
+                <label> Anode Thickness (μ) <br>
+                    <input class="firstIn" id="anodeThick">
+                </label>
+                <label> Anode Foil <br>
+                    <input class="firstIn" id="anodeFoil">
+                </label>
+            </div>
+            <h2>NEC</h2> 
+            <div style="display: flex;">
+                <label> NEC Layer <br>
+                    <input class="firstIn" id="necLayer">
+                </label>
+                <label> NEC (Watt) <br>
+                    <input class="firstIn" id="necWatt">
+                </label>
+                <label> NEC (Minute) <br>
+                    <input class="firstIn" id="necMinute">
+                </label>
+                <label> Protect Layer <br>
+                    <input class="firstIn" id="protectLayer">
+                </label>
+                <label> Protect (Watt) <br>
+                    <input class="firstIn" id="protectWatt">
+                </label>
+                <label> Protect (Time) <br>
+                    <input class="firstIn" id="protectTime">
+                </label>
+            </div>
+        </div>
+        <div style="display: flex;">
+            <div id="calBox">
+                <h1>mA Cal.</h1>
                 <label> Electrode Mass <br>
                     <input id="mass" type="number" onChange="calculate()">
                 </label>
@@ -183,64 +272,69 @@
                     </div>
                 </label>
                 <br>
-                <button id="copy" onclick="cc()">Copy</button>      
-            </div>      
-            <div>
-                <div id="sub">
-                    <div class="sub">
-                        Cycle
-                        <br>
-                        <p>1</p>
-                        <p>2</p>
-                        <p>3</p>
-                        <p>4</p>
-                        <p>5</p>
+                <button id="copy" onclick="cc()">Copy</button> 
+            </div>
+            <div id="mainBox">
+                <h1>Cycles</h1> 
+                <div class="column">
+                    <div class="column">
+                        <div id="sub">
+                            <div class="sub column">
+                                Cycle
+                                <br>
+                                <p>1</p>
+                                <p>2</p>
+                                <p>3</p>
+                                <p>4</p>
+                                <p>5</p>
+                            </div>
+                            <div class="sub column">
+                                Energy discharge (mWh)
+                                <input type="number" id="1">
+                                <input type="number" id="2">
+                                <input type="number" id="3">
+                                <input type="number" id="4">
+                                <input type="number" id="5">
+                            </div>
+                            <div class="sub column">
+                                Cycle
+                                <br>
+                                <p>6</p>
+                                <p>7</p>
+                                <p>8</p>
+                                <p>9</p>
+                                <p>10</p>
+                            </div>
+                            <div class="sub column">
+                                Energy discharge (mWh)
+                                <input type="number" id="6">
+                                <input type="number" id="7">
+                                <input type="number" id="8">
+                                <input type="number" id="9">
+                                <input type="number" id="10">
+                            </div>
+                            <div class="sub column">
+                                Cycle
+                                <br>
+                                <p>15</p>
+                                <p>20</p>
+                                <p>30</p>
+                                <p>50</p>
+                                <p>100</p>
+                            </div>
+                            <div class="sub column">
+                                Energy discharge (mWh)
+                                <input type="number" id="15">
+                                <input type="number" id="20">
+                                <input type="number" id="30">
+                                <input type="number" id="50">
+                                <input type="number" id="100">
+                            </div>
+                        </div>
                     </div>
-                    <div class="sub">
-                        Energy discharge (mWh)
-                        <input type="number" id="1">
-                        <input type="number" id="2">
-                        <input type="number" id="3">
-                        <input type="number" id="4">
-                        <input type="number" id="5">
+                    <div style="display: inline; margin-top: 2vw;">  
+                        <button onclick="csv()">Download CSV</button>    
                     </div>
-                    <div class="sub">
-                        Cycle
-                        <br>
-                        <p>6</p>
-                        <p>7</p>
-                        <p>8</p>
-                        <p>9</p>
-                        <p>10</p>
-                    </div>
-                    <div class="sub">
-                        Energy discharge (mWh)
-                        <input type="number" id="6">
-                        <input type="number" id="7">
-                        <input type="number" id="8">
-                        <input type="number" id="9">
-                        <input type="number" id="10">
-                    </div>
-                    <div class="sub">
-                        Cycle
-                        <br>
-                        <p>15</p>
-                        <p>20</p>
-                        <p>30</p>
-                        <p>50</p>
-                        <p>100</p>
-                    </div>
-                    <div class="sub">
-                        Energy discharge (mWh)
-                        <input type="number" id="15">
-                        <input type="number" id="20">
-                        <input type="number" id="30">
-                        <input type="number" id="50">
-                        <input type="number" id="100">
-                    </div>
-                </div>
-                <div style="display: inline; margin-top: 1vw;">  
-                    <button onclick="csv()">Download CSV</button>    
                 </div>
             </div>
         </div>
