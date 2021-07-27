@@ -80,251 +80,199 @@
             document.body.removeChild(element);
         }
     </script>
-    <style>
-        body {
-            margin: 0;
-            background-color: #e0e0e0;
-        }
-        body,
-        input,
-        button {
-            font-family: "Courier New", Courier, monospace;
-        }
-        #max-size {
-            width: 100%;
-            height: 100vh;
-            display: grid;
-            place-items: center;
-        }
-        #dataBox {
-            border-radius: 50px;
-            background: #e0e0e0;
-            box-shadow:  20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
-            width: fit-content;
-            height: fit-content;
-            padding: 2vw;
-        }
-        h1,
-        h2 {
-            margin: 0;
-        }
-        label,
-        #calBox,
-        .column {
-            display: grid;
-            place-items: center;
-        }
-        input {
-            background-color: #f5f5f5;
-        }
-        input,
-        select {
-            border: 2px solid transparent;
-            padding: 0.5vw;
-            border-radius: 50px;
-        }
-        button,
-        input {
-            border: 2px solid transparent;
-            padding: 0.5vw;
-            border-radius: 100px;
-        }
-        button:focus,
-        button:hover,
-        input {
-            outline: none;
-        }
-        button:active,
-        input#submit:active {
-            background-color: lightgray;
-            border: 2px solid transparent;
-        }
-        :focus {
-            border: 2px solid lightgray;
-        }
-        .firstIn {
-            width: 10.9375vw;
-            margin: 0 1vw;
-        }
-        h2 {
-            margin-top: 1vw;
-        }
-        #calBox {
-            border-radius: 50px;
-            background: #e0e0e0;
-            box-shadow:  20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
-            width: fit-content;
-            height: fit-content;
-            padding: 2vw;
-            margin-right: 4vw;
-        }
-        #mainBox {
-            border-radius: 50px;
-            background: #e0e0e0;
-            box-shadow:  20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
-            padding: 1.5vw;
-            width: fit-content;
-            height: fit-content;
-        }
-        #mainBox h1 {
-            margin-bottom: 1vw;
-        }
-        #sub {
-            display: flex;
-            text-align: center;
-            vertical-align: middle;
-        }
-        .sub {
-            margin-left: 2vw;
-        }
-        .sub p {
-            margin: 1.65625vw 0 1.15625vw 0;
-        }
-        .sub input {
-            margin: 1vw 0 .5vw 0;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
 </head>
 <body>
-    <div id="max-size">
-        <div id="dataBox">
+    <div style="padding: 2vw;display: grid;place-items: center;height: 100vh;">
+        <div class="box content">
             <h1>General Data</h1> 
-            <div style="display: flex;">
-                <label> Test-Code <br>
-                    <input class="firstIn" id="testCode">
+            <div class="columns" style="display: flex;">
+                <label class="column"> Test-Code
+                    <input class="input" id="testCode">
                 </label>
-                <label> Cathode <br>
-                    <input class="firstIn" id="cathode">
+                <label class="column"> Cathode
+                    <input class="input" id="cathode">
                 </label>
-                <label> Anode <br>
-                    <input class="firstIn" id="anode">
+                <label class="column"> Anode
+                    <input class="input" id="anode">
                 </label>
-                <label> Anode Solution <br>
-                    <input class="firstIn" id="anodeSol">
+                <label class="column"> Anode Solution
+                    <input class="input" id="anodeSol">
                 </label>
-                <label> Anode Thickness (μ) <br>
-                    <input class="firstIn" id="anodeThick">
+                <label class="column"> Anode Thickness (μ)
+                    <input class="input" id="anodeThick">
                 </label>
-                <label> Anode Foil <br>
-                    <input class="firstIn" id="anodeFoil">
+                <label class="column"> Anode Foil
+                    <input class="input" id="anodeFoil">
                 </label>
             </div>
             <h2>NEC</h2> 
-            <div style="display: flex;">
-                <label> NEC Layer <br>
-                    <input class="firstIn" id="necLayer">
+            <div class="columns" style="display: flex;">
+                <label class="column"> NEC Layer 
+                    <input class="input" id="necLayer">
                 </label>
-                <label> NEC (Watt) <br>
-                    <input class="firstIn" id="necWatt">
+                <label class="column"> NEC (Watt) 
+                    <input class="input" id="necWatt">
                 </label>
-                <label> NEC (Minute) <br>
-                    <input class="firstIn" id="necMinute">
+                <label class="column"> NEC (Minute) 
+                    <input class="input" id="necMinute">
                 </label>
-                <label> Protect Layer <br>
-                    <input class="firstIn" id="protectLayer">
+                <label class="column"> Protect Layer 
+                    <input class="input" id="protectLayer">
                 </label>
-                <label> Protect (Watt) <br>
-                    <input class="firstIn" id="protectWatt">
+                <label class="column"> Protect (Watt)
+                    <input class="input" id="protectWatt">
                 </label>
-                <label> Protect (Time) <br>
-                    <input class="firstIn" id="protectTime">
+                <label class="column"> Protect (Time) 
+                    <input class="input" id="protectTime">
                 </label>
             </div>
         </div>
-        <div style="display: flex;">
-            <div id="calBox">
+        <div class="columns">
+            <div class="column box content" style="margin: .75rem; max-width: 20vw;text-align: center;">
                 <h1>mA Cal.</h1>
                 <label> Electrode Mass <br>
-                    <input id="mass" type="number" onChange="calculate()">
+                    <input id="mass" class="input" style="max-width: 80%;text-align: center;" type="number" onChange="calculate()">
                 </label>
                 <br>
-                <label> Anode Foil <br>
-                    <select id="anodeFoil" onChange="calculate()">
-                        <option value="Cu">Cu</option>
-                        <option value="Al">Al</option>
-                    </select>
-                </label>
                 <br>
-                <label> Cathode Foil <br>
-                    <select id="cathodeFoil" onChange="calculate()">
-
-                        <option value="Al">Al</option>
-                        <option value="Cu">Cu</option>
-                    </select>
-                </label>
+                <div>
+                    <label> Anode Foil <br>
+                        <div class="select">
+                            <select id="anodeFoil" onChange="calculate()">
+                                <option value="Cu">Cu</option>
+                                <option value="Al">Al</option>
+                            </select>
+                        </div>
+                    </label>
+                    </div>
+                <br>
+                <div>
+                    <label> Cathode Foil <br>
+                        <div class="select">
+                            <select id="cathodeFoil" onChange="calculate()">
+                                <option value="Al">Al</option>
+                                <option value="Cu">Cu</option>
+                            </select>
+                        </div>
+                    </label>
+                </div>
                 <br>
                 <label> A/g <br>
-                    <input  id="ampPerGram" value="0.025" onChange="calculate()">
+                    <input  id="ampPerGram" class="input" style="max-width: 80%;text-align: center;" value="0.025" onChange="calculate()">
                 </label>
                 <br>
-                <label> Current (mA) <br>
-                    <div id="result" onChange="calculate()">
+                <br>
+                <label> Current (mA) <br><br>
+                    <div id="result" style="text-align: center;" onChange="calculate()">
                         ...
                     </div>
                 </label>
                 <br>
-                <button id="copy" onclick="cc()">Copy</button> 
+                <button class="button" id="copy" onclick="cc()">Copy</button> 
             </div>
-            <div id="mainBox">
+            <div class="box content column" style="margin: .75rem;">
                 <h1>Cycles</h1> 
-                <div class="column">
-                    <div class="column">
-                        <div id="sub">
-                            <div class="sub column">
+                <div>
+                    <div>
+                        <div class="columns">
+                            <div class="column" style="text-align: center;">
                                 Cycle
+                                <br>
                                 <br>
                                 <p>1</p>
+                                <br>
                                 <p>2</p>
+                                <br>
                                 <p>3</p>
+                                <br>
                                 <p>4</p>
+                                <br>
                                 <p>5</p>
                             </div>
-                            <div class="sub column">
+                            <div class="column">
                                 Energy discharge (mWh)
-                                <input type="number" id="1">
-                                <input type="number" id="2">
-                                <input type="number" id="3">
-                                <input type="number" id="4">
-                                <input type="number" id="5">
+                                <input class="input" type="number" id="1">
+                                <br>
+                                <br>
+                                <input class="input" type="number" id="2">
+                                <br>
+                                <br>
+                                <input class="input" type="number" id="3">
+                                <br>
+                                <br>
+                                <input class="input" type="number" id="4">
+                                <br>
+                                <br>
+                                <input class="input" type="number" id="5">
                             </div>
-                            <div class="sub column">
+                            <div class="column" style="text-align: center;">
                                 Cycle
+                                <br>
                                 <br>
                                 <p>6</p>
+                                <br>
                                 <p>7</p>
+                                <br>
                                 <p>8</p>
+                                <br>
                                 <p>9</p>
+                                <br>
                                 <p>10</p>
                             </div>
-                            <div class="sub column">
+                            <div class="column">
                                 Energy discharge (mWh)
-                                <input type="number" id="6">
-                                <input type="number" id="7">
-                                <input type="number" id="8">
-                                <input type="number" id="9">
-                                <input type="number" id="10">
+                                <input class="input" type="number" id="6">
+                                <br>
+                                <br>
+                                <input class="input" type="number" id="7">
+                                <br>
+                                <br>
+                                <input class="input" type="number" id="8">
+                                <br>
+                                <br>
+                                <input class="input" type="number" id="9">
+                                <br>
+                                <br>
+                                <input class="input" type="number" id="10">
                             </div>
-                            <div class="sub column">
+                            <div class="column" style="text-align: center;">
                                 Cycle
                                 <br>
+                                <br>
                                 <p>15</p>
+                                <br>
                                 <p>20</p>
+                                <br>
                                 <p>30</p>
+                                <br>
                                 <p>50</p>
+                                <br>
                                 <p>100</p>
                             </div>
-                            <div class="sub column">
+                            <div class="column">
                                 Energy discharge (mWh)
-                                <input type="number" id="15">
-                                <input type="number" id="20">
-                                <input type="number" id="30">
-                                <input type="number" id="50">
-                                <input type="number" id="100">
+                                <input class="input" type="number" id="15">
+                                <br>
+                                <br>
+                                <input class="input" type="number" id="20">
+                                <br>
+                                <br>
+                                <input class="input" type="number" id="30">
+                                <br>
+                                <br>
+                                <input class="input" type="number" id="50">
+                                <br>
+                                <br>
+                                <input class="input" type="number" id="100">
                             </div>
                         </div>
                     </div>
-                    <div style="display: inline; margin-top: 2vw;">  
-                        <button onclick="csv()">Download CSV</button>    
+                    <div style="display: grid;place-content: center;">
+                        <br>
+                        <br>
+                        <button class="button" onclick="csv()">Download CSV</button>    
+                        <br>
                     </div>
                 </div>
             </div>
