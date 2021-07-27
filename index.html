@@ -82,8 +82,8 @@
     </script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
 </head>
-<body>
-    <div style="padding: 2vw;display: grid;place-items: center;height: 100vh;">
+<body style="background-color: #e0e0e0;overflow: auto;padding: 2vw;font-family: 'Courier New', Courier, monospace;">
+    <div style="display: grid;place-items: center;height: 100vh;">
         <div class="box content">
             <h1>General Data</h1> 
             <div class="columns" style="display: flex;">
@@ -129,7 +129,7 @@
             </div>
         </div>
         <div class="columns">
-            <div class="column box content" style="margin: .75rem; max-width: 20vw;text-align: center;">
+            <div class="column box content" style="margin: .75rem .75rem 2vw .75rem; max-width: 20vw;text-align: center;">
                 <h1>mA Cal.</h1>
                 <label> Electrode Mass <br>
                     <input id="mass" class="input" style="max-width: 80%;text-align: center;" type="number" onChange="calculate()">
@@ -171,7 +171,7 @@
                 <br>
                 <button class="button" id="copy" onclick="cc()">Copy</button> 
             </div>
-            <div class="box content column" style="margin: .75rem;">
+            <div class="box content column" style="margin: .75rem .75rem 2vw .75rem;">
                 <h1>Cycles</h1> 
                 <div>
                     <div>
