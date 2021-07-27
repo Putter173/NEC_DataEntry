@@ -12,8 +12,9 @@
             background: #e0e0e0;
             box-shadow:  20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
             padding: 1.5vw;
-            width: 14.0625vw;
+            width: fit-content;
             height: 29.21875vw;
+            display: flex;
         }
         input,
         select {
@@ -64,6 +65,20 @@
             background-color: lightgray;
             border: 2px solid transparent;
         }
+        #sub {
+            display: flex;
+            text-align: center;
+            vertical-align: middle;
+        }
+        .sub {
+            margin-left: 2vw;
+        }
+        .sub p {
+            margin: 1.65625vw 0 1.15625vw 0;
+        }
+        .sub input {
+            margin: 1vw 0 .5vw 0;
+        }
     </style>
     <script>
         function calculate() {
@@ -100,41 +115,132 @@
             document.execCommand('copy');
             document.body.removeChild(el);
         }
+        function download(filename, text) {
+            var element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+            element.setAttribute('download', filename);
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
+        function csv() {
+            var mass = document.getElementById("mass").value;
+            var c1 = document.getElementById("1").value;
+            var c2 = document.getElementById("2").value;
+            var c3 = document.getElementById("3").value;
+            var c4 = document.getElementById("4").value;
+            var c5 = document.getElementById("5").value;
+            var c6 = document.getElementById("6").value;
+            var c7 = document.getElementById("7").value;
+            var c8 = document.getElementById("8").value;
+            var c9 = document.getElementById("9").value;
+            var c10 = document.getElementById("10").value;
+            var c15 = document.getElementById("15").value;
+            var c20 = document.getElementById("20").value;
+            var c30 = document.getElementById("30").value;
+            var c50 = document.getElementById("50").value;
+            var c100 = document.getElementById("100").value;
+            const value = ["", "", "", "", "", "", "", "","", "", "", "", "", mass, c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c15, c20, c30, c50, c100]
+            let finalValue = value.toString()
+            console.log(finalValue)
+            download("file.csv", finalValue);
+        }
     </script>
 </head>
 <body>
     <div class="max-size">
         <div id="mainBox">
-            <label> Electrode Mass <br>
-                <input id="mass" type="number" onChange="calculate()">
-            </label>
-            <br>
-            <label> Anode Foil <br>
-                <select id="anodeFoil" onChange="calculate()">
-                    <option value="Al">Al</option>
-                    <option value="Cu">Cu</option>
-                </select>
-            </label>
-            <br>
-            <label> Cathode Foil <br>
-                <select id="cathodeFoil" onChange="calculate()">
-                    <option value="Cu">Cu</option>
-                    <option value="Al">Al</option>
-                </select>
-            </label>
-            <br>
-            <label> A/g <br>
-                <input  id="ampPerGram" value="0.025" onChange="calculate()">
-            </label>
-            <br>
-            <label> Current (mA) <br>
-                <div id="result" onChange="calculate()">
-                    ...
+            <div>
+                <label> Electrode Mass <br>
+                    <input id="mass" type="number" onChange="calculate()">
+                </label>
+                <br>
+                <label> Anode Foil <br>
+                    <select id="anodeFoil" onChange="calculate()">
+                        <option value="Cu">Cu</option>
+                        <option value="Al">Al</option>
+                    </select>
+                </label>
+                <br>
+                <label> Cathode Foil <br>
+                    <select id="cathodeFoil" onChange="calculate()">
+
+                        <option value="Al">Al</option>
+                        <option value="Cu">Cu</option>
+                    </select>
+                </label>
+                <br>
+                <label> A/g <br>
+                    <input  id="ampPerGram" value="0.025" onChange="calculate()">
+                </label>
+                <br>
+                <label> Current (mA) <br>
+                    <div id="result" onChange="calculate()">
+                        ...
+                    </div>
+                </label>
+                <br>
+                <button id="copy" onclick="cc()">Copy</button>      
+            </div>      
+            <div>
+                <div id="sub">
+                    <div class="sub">
+                        Cycle
+                        <br>
+                        <p>1</p>
+                        <p>2</p>
+                        <p>3</p>
+                        <p>4</p>
+                        <p>5</p>
+                    </div>
+                    <div class="sub">
+                        Energy discharge (mWh)
+                        <input type="number" id="1">
+                        <input type="number" id="2">
+                        <input type="number" id="3">
+                        <input type="number" id="4">
+                        <input type="number" id="5">
+                    </div>
+                    <div class="sub">
+                        Cycle
+                        <br>
+                        <p>6</p>
+                        <p>7</p>
+                        <p>8</p>
+                        <p>9</p>
+                        <p>10</p>
+                    </div>
+                    <div class="sub">
+                        Energy discharge (mWh)
+                        <input type="number" id="6">
+                        <input type="number" id="7">
+                        <input type="number" id="8">
+                        <input type="number" id="9">
+                        <input type="number" id="10">
+                    </div>
+                    <div class="sub">
+                        Cycle
+                        <br>
+                        <p>15</p>
+                        <p>20</p>
+                        <p>30</p>
+                        <p>50</p>
+                        <p>100</p>
+                    </div>
+                    <div class="sub">
+                        Energy discharge (mWh)
+                        <input type="number" id="15">
+                        <input type="number" id="20">
+                        <input type="number" id="30">
+                        <input type="number" id="50">
+                        <input type="number" id="100">
+                    </div>
                 </div>
-            </label>
-            <br>
-            <button id="copy" onclick="cc()">Copy</button>            
+                <div style="display: inline; margin-top: 1vw;">  
+                    <button onclick="csv()">Download CSV</button>    
+                </div>
+            </div>
         </div>
     </div>
-    
 </body>
