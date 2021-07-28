@@ -5,19 +5,10 @@
     <script>
         function calculate() {
             var mass = document.getElementById("mass").value;
-            var anodeFoil = document.getElementById("anodeFoil").value;
-            var cathodeFoil = document.getElementById("cathodeFoil").value;
+            var anodeFoil = document.getElementById("anodeFoilMass").value;
+            var cathodeFoil = document.getElementById("cathodeFoilMass").value;
             var ampPerGram = document.getElementById("ampPerGram").value;
-            if (anodeFoil === "Al") {
-                anodeFoil = 0.0106
-            } else if (anodeFoil === "Cu") {
-                anodeFoil = 0.0175
-            }
-            if (cathodeFoil === "Al") {
-                cathodeFoil = 0.0106
-            } else if (cathodeFoil === "Cu") {
-                cathodeFoil = 0.0175
-            }
+            
             var active = mass - anodeFoil - cathodeFoil
             active = Math.round(active * 1000) / 1000
             var result = ampPerGram * active * 1000
@@ -25,6 +16,20 @@
             document.getElementById("result").innerHTML = result;        
             if (result <= 0) {
                 document.getElementById("result").innerHTML = "..."
+            }
+        }
+        function electrodeMass() {
+            var anode = document.getElementById("anodeFoil").value;
+            var cathode = document.getElementById("cathodeFoil").value;
+            if (anode === "Al") {
+                document.getElementById("anodeFoilMass").value = '0.0106';
+            } else if (anode === "Cu") {
+                document.getElementById("anodeFoilMass").value = '0.0175';
+            }
+            if (cathode === "Al") {
+                document.getElementById("cathodeFoilMass").value = '0.0106';
+            } else if (cathode === "Cu") {
+                document.getElementById("cathodeFoilMass").value = '0.0175';
             }
         }
         function cc() {
@@ -68,7 +73,16 @@
             var c100 = document.getElementById("100").value;
             const value = ["", testCode, cathode, anode, anodeSol, anodeThick, anodeFoil, necLayer,necWatt, necMinute, protectLayer, protectWatt, protectTime, mass, c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c15, c20, c30, c50, c100]
             let finalValue = value.toString()
-            download("file.csv", finalValue);
+            var tzoffset = (new Date()).getTimezoneOffset() * 60000; //offset in milliseconds
+            var localISOTime = (new Date(Date.now() - tzoffset)).toISOString().slice(0, -1);
+            localISOTime = localISOTime.substring(0,19)
+            localISOTime = localISOTime.replace('-','')
+            localISOTime = localISOTime.replace('-','')
+            localISOTime = localISOTime.replace('T','-')
+            localISOTime = localISOTime.replace(':','')
+            localISOTime = localISOTime.replace(':','')
+            var fileName = localISOTime + ".csv"
+            download(fileName, finalValue);
         }
         function download(filename, text) {
             var element = document.createElement('a');
@@ -102,9 +116,6 @@
                 <label class="column"> Anode Thickness (μ)
                     <input class="input" id="anodeThick">
                 </label>
-                <label class="column"> Anode Foil
-                    <input class="input" id="anodeFoil">
-                </label>
             </div>
             <h2>NEC</h2> 
             <div class="columns" style="display: flex;">
@@ -136,30 +147,46 @@
                 </label>
                 <br>
                 <br>
-                <div>
                     <label> Anode Foil <br>
-                        <div class="select">
-                            <select id="anodeFoil" onChange="calculate()">
-                                <option value="Cu">Cu</option>
-                                <option value="Al">Al</option>
-                            </select>
-                        </div>
+                        <table>
+                            <tr>
+                                <td>
+                                    <div class="select">
+                                        <select id="anodeFoil" onChange="electrodeMass()">
+                                            <option value="Cu">Cu</option>
+                                            <option value="Al">Al</option>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td>
+                                    <input class="input" style="width: 100%;text-align: center;" value="0.0175" id="anodeFoilMass" onChange="calculate()">
+                                </td>
+                            </tr>
+                        </table>
                     </label>
-                    </div>
                 <br>
                 <div>
                     <label> Cathode Foil <br>
-                        <div class="select">
-                            <select id="cathodeFoil" onChange="calculate()">
-                                <option value="Al">Al</option>
-                                <option value="Cu">Cu</option>
-                            </select>
-                        </div>
+                        <table>
+                            <tr>
+                                <td>
+                                    <div class="select">
+                                        <select id="cathodeFoil" onChange="electrodeMass()">
+                                            <option value="Al">Al</option>
+                                            <option value="Cu">Cu</option>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td>
+                                    <input class="input" style="width: 100%;text-align: center;" value="0.0106" id="cathodeFoilMass" onChange="calculate()">
+                                </td>
+                            </tr>
+                        </table>
                     </label>
                 </div>
                 <br>
                 <label> A/g <br>
-                    <input  id="ampPerGram" class="input" style="max-width: 80%;text-align: center;" value="0.025" onChange="calculate()">
+                    <input  id="ampPerGram" class="input" style="max-width: 80%;text-align: center;" value="0.025">
                 </label>
                 <br>
                 <br>
