@@ -95,6 +95,12 @@
         }
     </script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <style>
+        th,
+        td {
+            border: none !important;
+        }
+    </style>
 </head>
 <body style="background-color: #e0e0e0;overflow: auto;padding: 2vw;font-family: 'Courier New', Courier, monospace;">
     <div style="display: grid;place-items: center;height: 100vh;">
@@ -198,109 +204,132 @@
                 <br>
                 <button class="button" style="font-family: 'Courier New', Courier, monospace;font-weight: bold;" id="copy" onclick="cc()">Copy</button> 
             </div>
-            <div class="box content column" style="margin: .75rem .75rem 2vw .75rem;">
+            <div class="box content column" style="margin: .75rem .75rem 2vw .75rem;height: fit-content;">
                 <h1>Cycles</h1> 
-                <div>
-                    <div>
-                        <div class="columns">
-                            <div class="column" style="text-align: center;">
-                                Cycle
-                                <br>
-                                <br>
-                                <p>1</p>
-                                <br>
-                                <p>2</p>
-                                <br>
-                                <p>3</p>
-                                <br>
-                                <p>4</p>
-                                <br>
-                                <p>5</p>
-                            </div>
-                            <div class="column">
-                                Energy discharge (mWh)
-                                <input class="input" type="number" id="1">
-                                <br>
-                                <br>
-                                <input class="input" type="number" id="2">
-                                <br>
-                                <br>
-                                <input class="input" type="number" id="3">
-                                <br>
-                                <br>
-                                <input class="input" type="number" id="4">
-                                <br>
-                                <br>
-                                <input class="input" type="number" id="5">
-                            </div>
-                            <div class="column" style="text-align: center;">
-                                Cycle
-                                <br>
-                                <br>
-                                <p>6</p>
-                                <br>
-                                <p>7</p>
-                                <br>
-                                <p>8</p>
-                                <br>
-                                <p>9</p>
-                                <br>
-                                <p>10</p>
-                            </div>
-                            <div class="column">
-                                Energy discharge (mWh)
-                                <input class="input" type="number" id="6">
-                                <br>
-                                <br>
-                                <input class="input" type="number" id="7">
-                                <br>
-                                <br>
-                                <input class="input" type="number" id="8">
-                                <br>
-                                <br>
-                                <input class="input" type="number" id="9">
-                                <br>
-                                <br>
-                                <input class="input" type="number" id="10">
-                            </div>
-                            <div class="column" style="text-align: center;">
-                                Cycle
-                                <br>
-                                <br>
-                                <p>15</p>
-                                <br>
-                                <p>20</p>
-                                <br>
-                                <p>30</p>
-                                <br>
-                                <p>50</p>
-                                <br>
-                                <p>100</p>
-                            </div>
-                            <div class="column">
-                                Energy discharge (mWh)
-                                <input class="input" type="number" id="15">
-                                <br>
-                                <br>
-                                <input class="input" type="number" id="20">
-                                <br>
-                                <br>
-                                <input class="input" type="number" id="30">
-                                <br>
-                                <br>
-                                <input class="input" type="number" id="50">
-                                <br>
-                                <br>
-                                <input class="input" type="number" id="100">
-                            </div>
-                        </div>
-                    </div>
-                    <div style="display: grid;place-content: center;">
-                        <br>
-                        <br>
-                        <button class="button" style="font-family: 'Courier New', Courier, monospace;font-weight: bold;" onclick="csv()">Download CSV</button>    
-                        <br>
-                    </div>
+                <table>
+                    <tr>
+                        <th>
+                            Cycle
+                        </th>
+                        <th>
+                            Energy discharge (mWh)
+                        </th>
+                        <th>
+                            Cycle
+                        </th>
+                        <th>
+                            Energy discharge (mWh)
+                        </th>
+                        <th>
+                            Cycle
+                        </th>
+                        <th>
+                            Energy discharge (mWh)
+                        </th>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;vertical-align: middle;">
+                            1
+                        </td>
+                        <td>
+                            <input class="input" type="number" id="1">
+                        </td>
+                        <td style="text-align: center;vertical-align: middle;">
+                            6
+                        </td>
+                        <td>
+                            <input class="input" type="number" id="6">
+                        </td>
+                        <td style="text-align: center;vertical-align: middle;">
+                            15
+                        </td>
+                        <td>
+                            <input class="input" type="number" id="15">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;vertical-align: middle;">
+                            2
+                        </td>
+                        <td>
+                            <input class="input" type="number" id="2">
+                        </td>
+                        <td style="text-align: center;vertical-align: middle;">
+                            7
+                        </td>
+                        <td>
+                            <input class="input" type="number" id="7">
+                        </td>
+                        <td style="text-align: center;vertical-align: middle;">
+                            20
+                        </td>
+                        <td>
+                            <input class="input" type="number" id="20">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;vertical-align: middle;">
+                            3
+                        </td>
+                        <td>
+                            <input class="input" type="number" id="3">
+                        </td>
+                        <td style="text-align: center;vertical-align: middle;">
+                            8
+                        </td>
+                        <td>
+                            <input class="input" type="number" id="8">
+                        </td>
+                        <td style="text-align: center;vertical-align: middle;">
+                            30
+                        </td>
+                        <td>
+                            <input class="input" type="number" id="30">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;vertical-align: middle;">
+                            4
+                        </td>
+                        <td>
+                            <input class="input" type="number" id="4">
+                        </td>
+                        <td style="text-align: center;vertical-align: middle;">
+                            9
+                        </td>
+                        <td>
+                            <input class="input" type="number" id="9">
+                        </td>
+                        <td style="text-align: center;vertical-align: middle;">
+                            50
+                        </td>
+                        <td>
+                            <input class="input" type="number" id="50">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;vertical-align: middle;">
+                            5
+                        </td>
+                        <td>
+                            <input class="input" type="number" id="5">
+                        </td>
+                        <td style="text-align: center;vertical-align: middle;">
+                            10
+                        </td>
+                        <td>
+                            <input class="input" type="number" id="10">
+                        </td>
+                        <td style="text-align: center;vertical-align: middle;">
+                            100
+                        </td>
+                        <td>
+                            <input class="input" type="number" id="100">
+                        </td>
+                    </tr>
+                </table>
+                <div style="display: grid;place-content: center;">
+                    <button class="button" style="font-family: 'Courier New', Courier, monospace;font-weight: bold;" onclick="csv()">Download CSV</button>    
                 </div>
             </div>
         </div>
