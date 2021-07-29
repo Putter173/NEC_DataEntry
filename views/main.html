@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<head>
+    <script src="/scripts/mainFunctions.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <style>
+        th,
+        td {
+            border: none !important;
+        }
+    </style>
+</head>
+<body style="background-color: #e0e0e0;overflow: auto;padding: .5vw;font-family: 'Courier New', Courier, monospace;">
+    <div style="display: grid;place-items: center;height: 100vh;">
+        <div class="box content">
+            <h1>General Data</h1> 
+            <div class="columns" style="display: flex;">
+                <label class="column"> Test-Code
+                    <input class="input" id="testCode">
+                </label>
+                <label class="column"> Cathode
+                    <input class="input" id="cathode">
+                </label>
+                <label class="column"> Anode
+                    <input class="input" id="anode">
+                </label>
+                <label class="column"> Anode Solution
+                    <input class="input" id="anodeSol">
+                </label>
+                <label class="column"> Anode Thickness (μ)
+                    <input class="input" id="anodeThick">
+                </label>
+            </div>
+            <h2>NEC</h2> 
+            <div class="columns" style="display: flex;">
+                <label class="column"> NEC Layer 
+                    <input class="input" id="necLayer">
+                </label>
+                <label class="column"> NEC (Watt) 
+                    <input class="input" id="necWatt">
+                </label>
+                <label class="column"> NEC (Minute) 
+                    <input class="input" id="necMinute">
+                </label>
+                <label class="column"> Protect Layer 
+                    <input class="input" id="protectLayer">
+                </label>
+                <label class="column"> Protect (Watt)
+                    <input class="input" id="protectWatt">
+                </label>
+                <label class="column"> Protect (Time) 
+                    <input class="input" id="protectTime">
+                </label>
+            </div>
+        </div>
+        <div class="columns" style="place-items: center;">
+            <div class="column box content" style="margin: .75rem .75rem 2vw .75rem; max-width: 20vw;text-align: center;">
+                <h1>mA Cal.</h1>
+                <label> Electrode Mass <br>
+                    <input id="mass" class="input" style="max-width: 80%;text-align: center;" type="number" onChange="calculate()">
+                </label>
+                <br>
+                <br>
+                    <label> Anode Foil <br>
+                        <table>
+                            <tr>
+                                <td>
+                                    <div class="select">
+                                        <select id="anodeFoil" onChange="electrodeMass()">
+                                            <option value="Cu">Cu</option>
+                                            <option value="Al">Al</option>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td>
+                                    <input class="input" style="width: 100%;text-align: center;" value="0.0175" id="anodeFoilMass" onChange="calculate()">
+                                </td>
+                            </tr>
+                        </table>
+                    </label>
+                <br>
+                <div>
+                    <label> Cathode Foil <br>
+                        <table>
+                            <tr>
+                                <td>
+                                    <div class="select">
+                                        <select id="cathodeFoil" onChange="electrodeMass()">
+                                            <option value="Al">Al</option>
+                                            <option value="Cu">Cu</option>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td>
+                                    <input class="input" style="width: 100%;text-align: center;" value="0.0106" id="cathodeFoilMass" onChange="calculate()">
+                                </td>
+                            </tr>
+                        </table>
+                    </label>
+                </div>
+                <br>
+                <label> A/g <br>
+                    <input  id="ampPerGram" class="input" style="max-width: 80%;text-align: center;" value="0.025">
+                </label>
+                <br>
+                <br>
+                <label> Current (mA) <br><br>
+                    <div id="result" style="text-align: center;" onChange="calculate()">
+                        ...
+                    </div>
+                </label>
+                <br>
+                <button class="button" style="font-family: 'Courier New', Courier, monospace;font-weight: bold;" id="copy" onclick="cc()">Copy</button> 
+            </div>
+            <div class="box content column" style="margin: .75rem .75rem 2vw .75rem;height: fit-content;">
+                <h1>Cycles</h1> 
+                <table>
+                    <tr>
+                        <th>
+                            Cycle
+                        </th>
+                        <th>
+                            Energy discharge (mWh)
+                        </th>
+                        <th>
+                            Cycle
+                        </th>
+                        <th>
+                            Energy discharge (mWh)
+                        </th>
+                        <th>
+                            Cycle
+                        </th>
+                        <th>
+                            Energy discharge (mWh)
+                        </th>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;vertical-align: middle;">
+                            1
+                        </td>
+                        <td>
+                            <input class="input" type="number" id="1">
+                        </td>
+                        <td style="text-align: center;vertical-align: middle;">
+                            6
+                        </td>
+                        <td>
+                            <input class="input" type="number" id="6">
+                        </td>
+                        <td style="text-align: center;vertical-align: middle;">
+                            15
+                        </td>
+                        <td>
+                            <input class="input" type="number" id="15">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;vertical-align: middle;">
+                            2
+                        </td>
+                        <td>
+                            <input class="input" type="number" id="2">
+                        </td>
+                        <td style="text-align: center;vertical-align: middle;">
+                            7
+                        </td>
+                        <td>
+                            <input class="input" type="number" id="7">
+                        </td>
+                        <td style="text-align: center;vertical-align: middle;">
+                            20
+                        </td>
+                        <td>
+                            <input class="input" type="number" id="20">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;vertical-align: middle;">
+                            3
+                        </td>
+                        <td>
+                            <input class="input" type="number" id="3">
+                        </td>
+                        <td style="text-align: center;vertical-align: middle;">
+                            8
+                        </td>
+                        <td>
+                            <input class="input" type="number" id="8">
+                        </td>
+                        <td style="text-align: center;vertical-align: middle;">
+                            30
+                        </td>
+                        <td>
+                            <input class="input" type="number" id="30">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;vertical-align: middle;">
+                            4
+                        </td>
+                        <td>
+                            <input class="input" type="number" id="4">
+                        </td>
+                        <td style="text-align: center;vertical-align: middle;">
+                            9
+                        </td>
+                        <td>
+                            <input class="input" type="number" id="9">
+                        </td>
+                        <td style="text-align: center;vertical-align: middle;">
+                            50
+                        </td>
+                        <td>
+                            <input class="input" type="number" id="50">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;vertical-align: middle;">
+                            5
+                        </td>
+                        <td>
+                            <input class="input" type="number" id="5">
+                        </td>
+                        <td style="text-align: center;vertical-align: middle;">
+                            10
+                        </td>
+                        <td>
+                            <input class="input" type="number" id="10">
+                        </td>
+                        <td style="text-align: center;vertical-align: middle;">
+                            100
+                        </td>
+                        <td>
+                            <input class="input" type="number" id="100">
+                        </td>
+                    </tr>
+                </table>
+                <div style="display: grid;place-content: center;">
+                    <button class="button" style="font-family: 'Courier New', Courier, monospace;font-weight: bold;" onclick="csv()">Download CSV</button>    
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
